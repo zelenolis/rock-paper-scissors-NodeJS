@@ -22,6 +22,12 @@ async function mainLoop() {
 
     let keepGoing = true;
     while (keepGoing) {
+      let botData = bot.getRandomMove();
+      console.log(`Bot's HMAC: ${botData[0]}`);
+      console.log('Available moves:');
+      userArgs.forEach((val) => {
+        console.log(val);
+      })
       const userInput = await new Promise((resolve) => {
           rl.question('Enter your input: ', (input) => {
           resolve(input);
@@ -35,6 +41,8 @@ async function mainLoop() {
       }
       
       console.log(`You entered: ${userInput}`);
+      console.log(`Bot's move: ${botData[1]}`);
+      console.log(`Bot's secret: ${bot.getSecretKey()}`);
     }
   } catch (error) {
       console.error('Error:', error);
