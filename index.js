@@ -1,4 +1,5 @@
 import readline from 'readline';
+import { bot } from './bot.js'
 
 const userArgs = process.argv.slice(2);
 
@@ -8,7 +9,7 @@ For example: \x1b[33mnpm run start rock paper scissors\x1b[0m\n`);
   process.exit(0);
 }
 
-let difficult = userArgs.length;
+bot.setMoveVariants(...userArgs);
 
 console.log(`\x1b[36mWelcome to the Game!\x1b[0m\n`);
 
@@ -21,19 +22,19 @@ async function mainLoop() {
 
     let keepGoing = true;
     while (keepGoing) {
-    const userInput = await new Promise((resolve) => {
-        rl.question('Enter your input: ', (input) => {
-        resolve(input);
-        });
-    });
+      const userInput = await new Promise((resolve) => {
+          rl.question('Enter your input: ', (input) => {
+          resolve(input);
+          });
+      });
 
-    console.log(`You entered: ${userInput}`);
-
-    if (userInput === 'stop') {
-        keepGoing = false;
-        rl.close();
-        process.exit(0);
-    }
+      if (userInput === 'stop') {
+          keepGoing = false;
+          rl.close();
+          process.exit(0);
+      }
+      
+      console.log(`You entered: ${userInput}`);
     }
   } catch (error) {
       console.error('Error:', error);
