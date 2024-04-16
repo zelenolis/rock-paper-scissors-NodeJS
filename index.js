@@ -1,5 +1,6 @@
 import readline from 'readline';
-import { bot } from './bot.js'
+import { bot } from './bot.js';
+import { gameTable } from './table.js';
 
 const userArgs = process.argv.slice(2);
 
@@ -10,6 +11,7 @@ For example: \x1b[33mnpm run start rock paper scissors\x1b[0m\n`);
 }
 
 bot.setMoveVariants(...userArgs);
+gameTable.setTable(...userArgs);
 let botData = bot.getRandomMove();
 
 console.log(`\x1b[36mWelcome to the Game!\x1b[0m\n`);
@@ -37,23 +39,30 @@ async function mainLoop() {
       });
 
       if (userInput === '?') {
-          console.log('HELP IS HERE')
+          console.log(`\x1b[36mTable with all wins/lose variants:\x1b[0m\n`);
+          gameTable.printTable();
       }
 
       if (userInput === '0') {
           keepGoing = false;
           rl.close();
+          process.exit(0);
       }
 
       if (!isNaN(+userInput)) {
-        console.log(`Your move: ${userArgs[userInput - 1]}`);
-        console.log(`Bot's move: ${botData[1]}\n`);
+        let you = userArgs[userInput - 1];
+        let botm = botData[1];
+        console.log(`Your move: ${you}`);
+        console.log(`Bot's move: ${botm}\n`);
+        console.log(`You ${gameTable.getWins(you, botm)}`)
         console.log(`Bot's secret: ${bot.getSecretKey()}\n`);
 
         console.log(`\x1b[36mNew Round!\x1b[0m\n`);
         botData = bot.getRandomMove();
       } else {
-        console.log('wrong input!');
+        if (userInput !== '?') {
+          console.log('wrong input!');
+        }
       }
       
     }
