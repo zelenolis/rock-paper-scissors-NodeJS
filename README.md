@@ -9,3 +9,7 @@ For example to play "Rock - paper - scissors - lizard - Spock" game just pass al
 - select `dev1` branch,
 - run `npm run start` command with 3 or more arguments (`npm run start rock paper scissors`)
 
+### Screenshot
+
+![screenshot1](https://github.com/zelenolis/rock-paper-scissors-NodeJS/blob/dev1/screenshot.JPG?raw=true)
+
