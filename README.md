@@ -1,7 +1,13 @@
-# rock-paper-scissors-NodeJS
+# Rock paper scissors game in NodeJS
+
+
+### Features
 
 This is an implementation of common rock-paper-scissors game, where you can choose the number of options to play with, like 3 (classic rock-paper-scissors), 5, 7 and so on.
+
 For example to play "Rock - paper - scissors - lizard - Spock" game just pass all variants as arguments into console.
+
+Before your move you'll receive a HMAC code of computer's move. After your move, you'll receive a secret key that allows you to verify the computer's action and ensure it hasn't cheated.
 
 ### How to start
 
