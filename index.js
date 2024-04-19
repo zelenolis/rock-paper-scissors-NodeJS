@@ -11,11 +11,11 @@ For example: \x1b[33mnpm run start rock paper scissors\x1b[0m\n`)
     process.exit(0)
 }
 
-const duplicates = userArgs.filter((item, index) => userArgs.indexOf(item) !== index);
+const duplicates = userArgs.filter((item, index) => userArgs.indexOf(item) !== index)
 
 if (duplicates.length > 0) {
     console.error(`\x1b[31mThe arguments should not be repeated.\x1b[0m`)
-            process.exit(0)
+    process.exit(0)
 }
 
 let botMove
